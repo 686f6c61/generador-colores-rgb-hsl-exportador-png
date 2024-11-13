@@ -1,0 +1,299 @@
+/**
+ * ColorPaletteGen - Estilos personalizados
+ * @version 1.0.0
+ * @author 686f6c61
+ * @license MIT
+ */
+
+/* ========================================
+   Variables del tema
+   ======================================== */
+:root {
+    --background-color: #ffffff;    /* Color de fondo principal */
+    --text-color: #4a4a4a;         /* Color de texto principal */
+    --border-color: #dbdbdb;       /* Color de bordes */
+    --color-code-bg: rgba(0, 0, 0, 0.8);        /* Fondo para códigos de color */
+    --color-code-hover-bg: rgba(0, 0, 0, 0.95); /* Fondo hover para códigos */
+}
+
+/* Tema oscuro */
+.dark-theme {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --border-color: #363636;
+}
+
+/* ========================================
+   Estilos generales
+   ======================================== */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========================================
+   Botón de cambio de tema
+   ======================================== */
+#themeToggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1000;
+}
+
+/* ========================================
+   Zona de arrastrar y soltar
+   ======================================== */
+#dropZone {
+    border: 2px dashed var(--border-color);
+    border-radius: 4px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+/* Estado activo de la zona de drop */
+#dropZone.is-primary {
+    border-color: #00d1b2;
+    background-color: rgba(0, 209, 178, 0.1);
+}
+
+/* ========================================
+   Previsualización de imagen
+   ======================================== */
+#previewImage {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    margin: 1rem 0;
+}
+
+/* ========================================
+   Cajas de colores
+   ======================================== */
+.color-box {
+    position: relative;
+    height: 150px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin: 0.5rem;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+/* Efecto hover en cajas de colores */
+.color-box:hover {
+    transform: scale(1.05);
+}
+
+/* ========================================
+   Visualización de códigos de color
+   ======================================== */
+.color-code {
+    width: 100%;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    text-align: center;
+    transition: opacity 0.2s;
+    opacity: 0;
+}
+
+/* Mostrar código en hover */
+.color-box:hover .color-code {
+    opacity: 1;
+}
+
+/* Formato HSL */
+.color-code.format-hsl {
+    background: var(--color-code-hover-bg);
+}
+
+/* ========================================
+   Paletas guardadas
+   ======================================== */
+.saved-palette {
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.saved-palette .column {
+    position: relative;
+    transition: transform 0.2s ease;
+    height: 40px;
+}
+
+.saved-palette .column:hover {
+    transform: scale(1.05);
+}
+
+/* Información del color en hover */
+.saved-palette .color-info {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-code-bg);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.saved-palette .column:hover .color-info {
+    opacity: 1;
+}
+
+/* ========================================
+   Sistema de notificaciones
+   ======================================== */
+.notification {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Animación de entrada para notificaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   Paletas complementarias
+   ======================================== */
+#complementaryColors .color-box {
+    height: 150px;
+}
+
+/* ========================================
+   Layout y grid
+   ======================================== */
+.columns.is-multiline {
+    margin: -0.5rem;
+}
+
+.column.is-2 {
+    width: calc(33.33% - 1rem);
+    padding: 0;
+}
+
+/* ========================================
+   Botones y controles
+   ======================================== */
+.buttons.is-centered {
+    justify-content: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 1rem;
+}
+
+.buttons.is-centered .button {
+    margin: 0 0.5rem;
+}
+
+/* ========================================
+   Opciones de exportación
+   ======================================== */
+.export-options {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.export-options .buttons {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.export-options .buttons .button {
+    margin: 0.5rem !important;
+    min-width: 200px;
+}
+
+.export-options .buttons.is-wrapped {
+    justify-content: center;
+}
+
+/* ========================================
+   Enlace a GitHub
+   ======================================== */
+.github-corner {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    font-size: 2rem;
+    color: var(--text-color);
+    background-color: transparent;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.github-corner:hover {
+    transform: scale(1.1);
+    color: #333;
+}
+
+.github-corner i {
+    display: block;
+}
+
+/* ========================================
+   Layout principal
+   ======================================== */
+.section {
+    padding-top: 4rem;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.footer {
+    padding: 2rem 1.5rem;
+    background-color: var(--background-color);
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+}
+
+.footer a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer .heart {
+    color: #000;
+    font-size: 1.2em;
+    display: inline-block;
+    margin: 0 0.2em;
+}
+
+.footer p {
+    color: var(--text-color);
+    font-size: 1rem;
+}
